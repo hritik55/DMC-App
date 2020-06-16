@@ -29,5 +29,7 @@ namespace Diagnostic_Medical_Center.Controllers
 
             return View();
         }
+
+       
     }
 }
