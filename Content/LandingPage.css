@@ -1,0 +1,32 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;700;800;900&display=swap');
+
+body {
+    
+    
+}
+
+.roles {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    margin-top: 10em; 
+}
+
+.rolebtn {
+    width: 40%;
+    position: relative;
+    top: 60%;
+    text-align: left;
+    padding: 30px;
+    margin: 10px;
+    background-image: linear-gradient(to right, rgba(34, 174, 209, 1), rgba(34, 226, 209, 0.3));
+    border: none;
+    color: white;
+    font-family: 'Muli', sans-serif;
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+    .rolebtn:hover {
+        background-image: linear-gradient(to right, rgba(255, 141, 182, 1), rgba(255, 191, 209, 0.3));
+    }
