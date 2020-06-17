@@ -66,7 +66,7 @@ namespace Diagnostic_Medical_Center.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "UserId")]
         public string Email { get; set; }
 
         [Required]

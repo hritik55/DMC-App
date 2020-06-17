@@ -1,7 +1,7 @@
-﻿@model Diagnostic_Medical_Center.ViewModel.PatientRegisterViewModel
+﻿@model Diagnostic_Medical_Center.ViewModel.AgentRegisterViewModel
 
 @{
-    ViewBag.Title = "Patient Registration";
+    ViewBag.Title = "Agent Registration";
 }
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PatientRegister</title>
+    <title>AgentRegister</title>
 </head>
 <body>
     @using (Html.BeginForm()) 
@@ -17,7 +17,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>PatientRegisterViewModel</h4>
+            
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -61,10 +61,10 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.AgentId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.AgentId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AgentId, "", new { @class = "text-danger" })
                 </div>
             </div>
     

@@ -23,7 +23,7 @@ namespace Diagnostic_Medical_Center.Models
         public bool RegistrationStatus { get; set; }
         public string UserId { get; set; }
         public string Password { get; set; }
-
+        
         public ICollection<Appointment> Appointments { get; set; }
     }
 }

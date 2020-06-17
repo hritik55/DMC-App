@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Diagnostic_Medical_Center.Models;
 
-namespace Diagnostic_Medical_Center.Models
+namespace Diagnostic_Medical_Center.ViewModel
 {
-    public class Doctor
+    public class DoctorRegisterViewModel
     {
-        
+        [Key]
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
@@ -22,11 +23,19 @@ namespace Diagnostic_Medical_Center.Models
         [Required]
         [RegularExpression("\\d{10}")]
         public string PhoneNo { get; set; }
-        public bool IsAvailable { get; set; }
-        public bool RegistrationStatus { get; set; }
-
+        [Required]
+        [Display(Name = "UserId")]
         public string UserId { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
     }
 }

@@ -9,6 +9,7 @@ namespace Diagnostic_Medical_Center.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -33,5 +34,11 @@ namespace Diagnostic_Medical_Center.Models
         public System.Data.Entity.DbSet<Diagnostic_Medical_Center.Models.Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<MedicareService> MedicareServices { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Agent> Agents { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Test> Tests { get; set; }
     }
 }

@@ -6,27 +6,18 @@ using System.Web;
 
 namespace Diagnostic_Medical_Center.Models
 {
-    public class Doctor
+    public class Admin
     {
-        
         public int Id { get; set; }
-        [Required]
-        [StringLength(255)]
         public string FirstName { get; set; }
-        [StringLength(255)]
         public string LastName { get; set; }
-        [Required]
         public int Age { get; set; }
         [Required]
         public Gender Sex { get; set; }
-        [Required]
-        [RegularExpression("\\d{10}")]
         public string PhoneNo { get; set; }
         public bool IsAvailable { get; set; }
         public bool RegistrationStatus { get; set; }
-
-        public string UserId { get; set; }
+        public string VendorId { get; set; }
         public string Password { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
     }
 }

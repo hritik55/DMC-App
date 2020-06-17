@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Diagnostic_Medical_Center.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Diagnostic_Medical_Center.Controllers
 {
@@ -17,7 +18,7 @@ namespace Diagnostic_Medical_Center.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        
         public AccountController()
         {
         }
@@ -156,6 +157,8 @@ namespace Diagnostic_Medical_Center.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    var roleStore = new RoleStore<Role>(new ApplicationDbContext());
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -423,9 +426,14 @@ namespace Diagnostic_Medical_Center.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        //Registration Controller
+
+       
+    
+
+    #region Helpers
+    // Used for XSRF protection when adding external logins
+    private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

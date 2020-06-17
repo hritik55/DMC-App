@@ -27,6 +27,10 @@ namespace Diagnostic_Medical_Center.Controllers
             return View();
         }
 
+        public ActionResult AdminLogin()
+        {
+            return View("Login");
+        }
         
     }
 }

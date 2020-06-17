@@ -24,8 +24,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    <li>@Html.ActionLink("Administration", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Doctors", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Agents", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Patients", "Login", "Account")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -38,9 +41,6 @@
         <button type="button" class="rolebtn">Doctor Login</button>
     </div>
     
-    <div>
-        @Html.ActionLink("Patient Login", "");    
-    </div>
 
 </body>
 
