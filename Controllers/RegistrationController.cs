@@ -9,7 +9,7 @@ using Diagnostic_Medical_Center.ViewModel;
 
 namespace Diagnostic_Medical_Center.Controllers
 {
-    
+    [AllowAnonymous]
     public class RegistrationController : Controller
     {
 
@@ -38,10 +38,22 @@ namespace Diagnostic_Medical_Center.Controllers
                     Password = patientView.Password,
                     RegistrationStatus = false
                 };
+
+                var user = new User()
+                {
+                    UserId = patientView.UserId,
+                    Password = patientView.Password,
+                    IsPatient = true,
+                    IsAdmin = false,
+                    IsAgent = false,
+                    IsDoctor = false
+                };
+
                 _context.Patients.Add(patient);
+                _context.Users.Add(user);
                 _context.SaveChanges();
                 
-                return View();
+                return RedirectToAction("Signin", "LoginManager");
             }
             else
                 return View("Error");
@@ -68,16 +80,13 @@ namespace Diagnostic_Medical_Center.Controllers
                     VendorId = adminView.VendorId,
                     Password = adminView.Password
                 };
-                var user = new User()
-                {
-                    UserId = adminView.VendorId,
-                    Password = adminView.Password
-                };
 
                 _context.Admins.Add(admin);
                 _context.SaveChanges();
-                return View();
-            }else
+                
+                return RedirectToAction("Signin", "LoginManager");
+            }
+            else
                 return View("Error");
         }
 
@@ -103,10 +112,14 @@ namespace Diagnostic_Medical_Center.Controllers
                     Password = doctorView.Password,
                     RegistrationStatus = false
                 };
+
+
                 _context.Doctors.Add(doctor);
                 _context.SaveChanges();
-                return View();
-            }else
+
+                return RedirectToAction("Signin", "LoginManager");
+            }
+            else
                 return View("Error");
         }
 
@@ -129,15 +142,19 @@ namespace Diagnostic_Medical_Center.Controllers
                     Sex = agentView.Sex,
                     PhoneNo = agentView.PhoneNo,
                     AgentId = agentView.AgentId,
-                    Password = agentView.Password
+                    Password = agentView.Password,
+                    RegistrationStatus = false
                 };
+
                 _context.Agents.Add(agent);
                 _context.SaveChanges();
-                return View();
+                    
+                return RedirectToAction("Signin", "LoginManager");
             }
             else
                 return View("Error");
 
         }
+
     }
 }

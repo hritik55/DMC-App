@@ -1,4 +1,5 @@
 ﻿@using System.Web.UI.WebControls
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +26,10 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
-                    <li>@Html.ActionLink("Administration", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Doctors", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Agents", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Patients", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Administration", "Signin", "LoginManager")</li>
+                    <li>@Html.ActionLink("Doctors", "Signin", "LoginManager")</li>
+                    <li>@Html.ActionLink("Agents", "Signin", "LoginManager")</li>
+                    <li>@Html.ActionLink("Patients", "Signin", "LoginManager")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

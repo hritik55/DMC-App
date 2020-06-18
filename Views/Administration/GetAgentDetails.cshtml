@@ -1,0 +1,43 @@
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<Diagnostic_Medical_Center.Models.Agent>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAgentDetails</title>
+</head>
+<body>
+<div>
+    <table>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.AgentId</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Age</td>
+                    <td>@item.Sex</td>
+                    <td>@item.PhoneNo</td>
+                    @if (!item.RegistrationStatus)
+                    {
+                        <td>Pending</td>
+}
+                    else if (item.RegistrationStatus)
+                    {
+                        <td>Accepted</td>
+                    }
+                    <td>@Html.ActionLink("Accept", "AcceptAgent", "Administration", new { @id = item.AgentId }, null)</td>
+                    <td>
+                        @Html.ActionLink("Reject", "RejectAgent", "Administration", new { @id = item.AgentId }, null)</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
+</body>
+</html>

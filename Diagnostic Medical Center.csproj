@@ -168,9 +168,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\Helpers\AdminsController.cs" />
+    <Compile Include="Controllers\Helpers\AgentsController.cs" />
+    <Compile Include="Controllers\Helpers\DoctorsController.cs" />
+    <Compile Include="Controllers\Helpers\PatientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginManagerController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SamzController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,6 +188,26 @@
     <Compile Include="Migrations\202006170556386_newChanges.cs" />
     <Compile Include="Migrations\202006170556386_newChanges.Designer.cs">
       <DependentUpon>202006170556386_newChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006171318160_RoleUserTableUpdate.cs" />
+    <Compile Include="Migrations\202006171318160_RoleUserTableUpdate.Designer.cs">
+      <DependentUpon>202006171318160_RoleUserTableUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006172257526_rolesDeleted.cs" />
+    <Compile Include="Migrations\202006172257526_rolesDeleted.Designer.cs">
+      <DependentUpon>202006172257526_rolesDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006180632225_addedBooleanRoles.cs" />
+    <Compile Include="Migrations\202006180632225_addedBooleanRoles.Designer.cs">
+      <DependentUpon>202006180632225_addedBooleanRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006181050275_tempRoleTable.cs" />
+    <Compile Include="Migrations\202006181050275_tempRoleTable.Designer.cs">
+      <DependentUpon>202006181050275_tempRoleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006181158592_tempRoleTable1.cs" />
+    <Compile Include="Migrations\202006181158592_tempRoleTable1.Designer.cs">
+      <DependentUpon>202006181158592_tempRoleTable1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -193,9 +220,10 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MedicareService.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\tempModel.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\AdminRegisterViewModel.cs" />
@@ -261,12 +289,41 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\LandingPage.cshtml" />
-    <Content Include="Views\Home\AdminLogin.cshtml" />
     <Content Include="Views\Registration\PatientRegister.cshtml" />
     <Content Include="Views\Account\PatientRegister.cshtml" />
     <Content Include="Views\Registration\AdminRegister.cshtml" />
     <Content Include="Views\Registration\DoctorRegister.cshtml" />
     <Content Include="Views\Registration\AgentRegister.cshtml" />
+    <Content Include="Views\AdminOps\Admins\Create.cshtml" />
+    <Content Include="Views\AdminOps\Admins\Delete.cshtml" />
+    <Content Include="Views\AdminOps\Admins\Details.cshtml" />
+    <Content Include="Views\AdminOps\Admins\Edit.cshtml" />
+    <Content Include="Views\AdminOps\Admins\Index.cshtml" />
+    <Content Include="Views\AdminOps\Doctors\Create.cshtml" />
+    <Content Include="Views\AdminOps\Doctors\Delete.cshtml" />
+    <Content Include="Views\AdminOps\Doctors\Details.cshtml" />
+    <Content Include="Views\AdminOps\Doctors\Edit.cshtml" />
+    <Content Include="Views\AdminOps\Doctors\Index.cshtml" />
+    <Content Include="Views\AdminOps\Patients\Create.cshtml" />
+    <Content Include="Views\AdminOps\Patients\Delete.cshtml" />
+    <Content Include="Views\AdminOps\Patients\Details.cshtml" />
+    <Content Include="Views\AdminOps\Patients\Edit.cshtml" />
+    <Content Include="Views\AdminOps\Patients\Index.cshtml" />
+    <Content Include="Views\AdminOps\Agents\Create.cshtml" />
+    <Content Include="Views\AdminOps\Agents\Delete.cshtml" />
+    <Content Include="Views\AdminOps\Agents\Details.cshtml" />
+    <Content Include="Views\AdminOps\Agents\Edit.cshtml" />
+    <Content Include="Views\AdminOps\Agents\Index.cshtml" />
+    <Content Include="Views\AdminOps\Users\Create.cshtml" />
+    <Content Include="Views\AdminOps\Users\Delete.cshtml" />
+    <Content Include="Views\AdminOps\Users\Details.cshtml" />
+    <Content Include="Views\AdminOps\Users\Edit.cshtml" />
+    <Content Include="Views\AdminOps\Users\Index.cshtml" />
+    <Content Include="Views\LoginManager\Signin.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Samz\Index.cshtml" />
+    <Content Include="Views\Samz\Roles.cshtml" />
+    <Content Include="Views\Administration\GetAgentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +347,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006170556386_newChanges.resx">
       <DependentUpon>202006170556386_newChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006171318160_RoleUserTableUpdate.resx">
+      <DependentUpon>202006171318160_RoleUserTableUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006172257526_rolesDeleted.resx">
+      <DependentUpon>202006172257526_rolesDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006180632225_addedBooleanRoles.resx">
+      <DependentUpon>202006180632225_addedBooleanRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181050275_tempRoleTable.resx">
+      <DependentUpon>202006181050275_tempRoleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181158592_tempRoleTable1.resx">
+      <DependentUpon>202006181158592_tempRoleTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

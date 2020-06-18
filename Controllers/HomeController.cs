@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Diagnostic_Medical_Center.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -27,10 +28,6 @@ namespace Diagnostic_Medical_Center.Controllers
             return View();
         }
 
-        public ActionResult AdminLogin()
-        {
-            return View("Login");
-        }
         
     }
 }

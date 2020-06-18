@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.UserRoles>
+@{
+    ViewBag.Title = "Roles";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm())
+    {
+        foreach (var item in Model)
+        {
+            @Html.RadioButton("Role", item.Id, new{@id = item.Id})
+            @Html.Label(item.UserRoleName.ToString(), new{@for =item.Id})
+        }
+
+        <input type="submit" name="RegisterButton" formaction="@Url.Action() value="Register"/>
+    }
+</div>
+</body>
+</html>
