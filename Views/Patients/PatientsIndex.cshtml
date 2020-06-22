@@ -1,0 +1,52 @@
+﻿@model Diagnostic_Medical_Center.Models.Doctor
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients Dashboard</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
+    <link href="~/Content/Dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/3a5999d18b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Diagnostic Medical Center", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+<div class="main-content">
+    <div class="side-nav">
+        <div class="link-container"><a href="#"><i class="fas fa-user fa-5x"></i><p>Account</p></a></div>
+        <a href="#"><i class="fas fa-user-md fa-5x"></i><p>Doctors</p></a>
+        <a href="#"><i class="fas fa-vial fa-5x"></i><p>Your Tests</p></a>
+    </div>
+    <div class="functions">
+        
+    </div>
+    <div style="margin:20px">
+       @Html.Partial("_DoctorList")
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

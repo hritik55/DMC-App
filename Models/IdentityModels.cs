@@ -33,12 +33,11 @@ namespace Diagnostic_Medical_Center.Models
 
         public System.Data.Entity.DbSet<Diagnostic_Medical_Center.Models.Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<MedicareService> MedicareServices { get; set; }
         public DbSet<Agent> Agents { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Test> Tests { get; set; }
-        public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using System.Web.UI.WebControls
-
+@model Diagnostic_Medical_Center.Models.User
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
     <link href="~/Content/LandingPage.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body>
+<body class="content">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -36,12 +36,61 @@
         </div>
     </div>
 
-    <div class="roles">
-        <button type="button" class="rolebtn">Admin Login</button>
-        <button type="button" class="rolebtn" onclick="PatientRegister.cshtml">Patient Login</button>
-        <button type="button" class="rolebtn">Doctor Login</button>
+<div class="split left">
+    <div class="centered">
+        <div style="background-color: lightblue; padding: 10px; margin: 10px;">
+            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300;">New Patient Registration</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("PatientRegister", "Registration")'">Register</button>
+        </div >
+        <div style="background-color: lightblue; padding: 10px; margin: 10px;">
+            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300;">New Doctor Registration</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("DoctorRegister", "Registration")'">Register</button>
+        </div >
+        <div style="background-color: lightblue; padding: 10px; margin: 10px;">
+            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300">New Agent Registration</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("AgentRegister", "Registration")'">Register</button>
+        </div >
+        <div  style="background-color: lightblue; padding: 10px; margin: 10px;">
+            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300">New Admin Registration</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("AdminRegister", "Registration")'">Register</button>
+        </div >
     </div>
-    
+    </div>
+
+    <div class="split right">
+        <div class="centered">
+            @using (Html.BeginForm())
+             {
+                @Html.AntiForgeryToken()
+        
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                 <div class="form-group">
+                     @Html.LabelFor(m => m.UserId, new { @class = "col-md-2 control-label" })
+                     <div class="col-md-10">
+                         @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
+                 <div style="width:10px"></div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+      
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>
+             }
+        </div>
+       
+
+        </div>
 
 </body>
 
+</html>

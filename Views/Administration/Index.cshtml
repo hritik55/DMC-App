@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Diagnostic_Medical_Center.Models.Admin
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,6 +7,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -21,22 +23,32 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li>Dear - @User.Identity.Name</li>
-                   
-                }
             </ul>
         </div>
     </div>
 </div>
 <div class="container body-content">
-    <h1>Welcome User!</h1>
+    <h1>Welcome!</h1>
     <hr />
-    
-    <div >See Pending Patient Requests</div>
+    <div class="row">
+        <div class="col-lg-3" style="background-color: lightblue; padding: 10px; margin: 2px;">
+            <p style="font-size: 2em; font-family: 'Muli', sans-serif; font-weight: 300; ">Pending Patient Requests</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("GetPatientDetails", "Administration")'">Get Details</button>
+        </div >
+        <div class="col-lg-3" style="background-color: lightblue; padding: 10px; margin: 2px;">
+            <p  style="font-size: 2em; font-family: 'Muli', sans-serif; font-weight: 300; ">Pending Doctor Requests</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("GetDoctorDetails", "Administration")'">Get Details</button>
+        </div >
+        <div class="col-lg-3" style="background-color: lightblue; padding: 10px; margin: 2px;">
+            <p  style="font-size: 2em; font-family: 'Muli', sans-serif; font-weight: 300">Pending Agent Requests</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("GetAgentDetails", "Administration")'">Get Details</button>
+        </div >
+        <div class="col-lg-3" style="background-color: lightblue; padding: 10px; margin: 2px;">
+            <p  style="font-size: 2em; font-family: 'Muli', sans-serif; font-weight: 300">Pending Admin Requests</p>
+            <button class="btn btn-primary" onclick="location.href = '@Url.Action("GetAdminDetails", "Administration")'">Get Details</button>
+        </div >
+    </div>
 </div>
 
 @Scripts.Render("~/bundles/jquery")

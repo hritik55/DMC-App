@@ -167,17 +167,22 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EditAgentController.cs" />
+    <Compile Include="Controllers\Helpers\AdminsEditController.cs" />
+    <Compile Include="Controllers\Helpers\AgentsEditController.cs" />
+    <Compile Include="Controllers\Helpers\DoctorsEditController.cs" />
+    <Compile Include="Controllers\Helpers\UsersEditController.cs" />
+    <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
-    <Compile Include="Controllers\Helpers\AdminsController.cs" />
-    <Compile Include="Controllers\Helpers\AgentsController.cs" />
-    <Compile Include="Controllers\Helpers\DoctorsController.cs" />
-    <Compile Include="Controllers\Helpers\PatientsController.cs" />
+    <Compile Include="Controllers\AgentsController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginManagerController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Identity\ManageController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\Helpers\PatientsEditController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Controllers\SamzController.cs" />
+    <Compile Include="Cryto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,51 +214,90 @@
     <Compile Include="Migrations\202006181158592_tempRoleTable1.Designer.cs">
       <DependentUpon>202006181158592_tempRoleTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006190500418_newMigration.cs" />
+    <Compile Include="Migrations\202006190500418_newMigration.Designer.cs">
+      <DependentUpon>202006190500418_newMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006211036206_UpdatedMedicareServices.cs" />
+    <Compile Include="Migrations\202006211036206_UpdatedMedicareServices.Designer.cs">
+      <DependentUpon>202006211036206_UpdatedMedicareServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006211216027_changedServices.cs" />
+    <Compile Include="Migrations\202006211216027_changedServices.Designer.cs">
+      <DependentUpon>202006211216027_changedServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006211217401_changedServices1.cs" />
+    <Compile Include="Migrations\202006211217401_changedServices1.Designer.cs">
+      <DependentUpon>202006211217401_changedServices1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006220453283_ModelChanges.cs" />
+    <Compile Include="Migrations\202006220453283_ModelChanges.Designer.cs">
+      <DependentUpon>202006220453283_ModelChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006220630277_ModelChanges1.cs" />
+    <Compile Include="Migrations\202006220630277_ModelChanges1.Designer.cs">
+      <DependentUpon>202006220630277_ModelChanges1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006221004382_minorModelChanges.cs" />
+    <Compile Include="Migrations\202006221004382_minorModelChanges.Designer.cs">
+      <DependentUpon>202006221004382_minorModelChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006221047496_minorModelChanges1.cs" />
+    <Compile Include="Migrations\202006221047496_minorModelChanges1.Designer.cs">
+      <DependentUpon>202006221047496_minorModelChanges1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006221300345_majorChanges.cs" />
+    <Compile Include="Migrations\202006221300345_majorChanges.Designer.cs">
+      <DependentUpon>202006221300345_majorChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Agent.cs" />
-    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MedicareService.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\tempModel.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserRoles.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\AdminRegisterViewModel.cs" />
-    <Compile Include="ViewModel\AgentRegisterViewModel.cs" />
-    <Compile Include="ViewModel\DoctorRegisterViewModel.cs" />
-    <Compile Include="ViewModel\PatientRegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dashboard.css" />
     <Content Include="Content\LandingPage.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -289,44 +333,52 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\LandingPage.cshtml" />
-    <Content Include="Views\Registration\PatientRegister.cshtml" />
     <Content Include="Views\Account\PatientRegister.cshtml" />
+    <Content Include="Views\LoginManager\Signin.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Administration\GetAgentDetails.cshtml" />
+    <Content Include="Views\Administration\GetPatientDetails.cshtml" />
+    <Content Include="Views\Administration\GetDoctorDetails.cshtml" />
+    <Content Include="Views\Administration\GetAdminDetails.cshtml" />
+    <Content Include="Views\Agents\AgentIndex.cshtml" />
+    <Content Include="Views\Doctors\DoctorsIndex.cshtml" />
+    <Content Include="Views\Patients\PatientsIndex.cshtml" />
+    <Content Include="Views\PatientsEdit\Create.cshtml" />
+    <Content Include="Views\PatientsEdit\Delete.cshtml" />
+    <Content Include="Views\PatientsEdit\Details.cshtml" />
+    <Content Include="Views\PatientsEdit\Edit.cshtml" />
+    <Content Include="Views\PatientsEdit\Index.cshtml" />
+    <Content Include="Views\Shared\_UserDashboardPartial.cshtml" />
+    <Content Include="Views\Shared\_DoctorList.cshtml" />
+    <Content Include="Views\Registration\PatientRegister.cshtml" />
     <Content Include="Views\Registration\AdminRegister.cshtml" />
     <Content Include="Views\Registration\DoctorRegister.cshtml" />
     <Content Include="Views\Registration\AgentRegister.cshtml" />
-    <Content Include="Views\AdminOps\Admins\Create.cshtml" />
-    <Content Include="Views\AdminOps\Admins\Delete.cshtml" />
-    <Content Include="Views\AdminOps\Admins\Details.cshtml" />
-    <Content Include="Views\AdminOps\Admins\Edit.cshtml" />
-    <Content Include="Views\AdminOps\Admins\Index.cshtml" />
-    <Content Include="Views\AdminOps\Doctors\Create.cshtml" />
-    <Content Include="Views\AdminOps\Doctors\Delete.cshtml" />
-    <Content Include="Views\AdminOps\Doctors\Details.cshtml" />
-    <Content Include="Views\AdminOps\Doctors\Edit.cshtml" />
-    <Content Include="Views\AdminOps\Doctors\Index.cshtml" />
-    <Content Include="Views\AdminOps\Patients\Create.cshtml" />
-    <Content Include="Views\AdminOps\Patients\Delete.cshtml" />
-    <Content Include="Views\AdminOps\Patients\Details.cshtml" />
-    <Content Include="Views\AdminOps\Patients\Edit.cshtml" />
-    <Content Include="Views\AdminOps\Patients\Index.cshtml" />
-    <Content Include="Views\AdminOps\Agents\Create.cshtml" />
-    <Content Include="Views\AdminOps\Agents\Delete.cshtml" />
-    <Content Include="Views\AdminOps\Agents\Details.cshtml" />
-    <Content Include="Views\AdminOps\Agents\Edit.cshtml" />
-    <Content Include="Views\AdminOps\Agents\Index.cshtml" />
-    <Content Include="Views\AdminOps\Users\Create.cshtml" />
-    <Content Include="Views\AdminOps\Users\Delete.cshtml" />
-    <Content Include="Views\AdminOps\Users\Details.cshtml" />
-    <Content Include="Views\AdminOps\Users\Edit.cshtml" />
-    <Content Include="Views\AdminOps\Users\Index.cshtml" />
-    <Content Include="Views\LoginManager\Signin.cshtml" />
-    <Content Include="Views\Administration\Index.cshtml" />
-    <Content Include="Views\Samz\Index.cshtml" />
-    <Content Include="Views\Samz\Roles.cshtml" />
-    <Content Include="Views\Administration\GetAgentDetails.cshtml" />
+    <Content Include="Views\EditAgent\Edit.cshtml" />
+    <Content Include="Views\AdminsEdit\Create.cshtml" />
+    <Content Include="Views\AdminsEdit\Delete.cshtml" />
+    <Content Include="Views\AdminsEdit\Details.cshtml" />
+    <Content Include="Views\AdminsEdit\Edit.cshtml" />
+    <Content Include="Views\AdminsEdit\Index.cshtml" />
+    <Content Include="Views\UsersEdit\Create.cshtml" />
+    <Content Include="Views\UsersEdit\Delete.cshtml" />
+    <Content Include="Views\UsersEdit\Details.cshtml" />
+    <Content Include="Views\UsersEdit\Edit.cshtml" />
+    <Content Include="Views\UsersEdit\Index.cshtml" />
+    <Content Include="Views\AgentsEdit\Create.cshtml" />
+    <Content Include="Views\AgentsEdit\Delete.cshtml" />
+    <Content Include="Views\AgentsEdit\Details.cshtml" />
+    <Content Include="Views\AgentsEdit\Edit.cshtml" />
+    <Content Include="Views\AgentsEdit\Index.cshtml" />
+    <Content Include="Views\DoctorsEdit\Create.cshtml" />
+    <Content Include="Views\DoctorsEdit\Delete.cshtml" />
+    <Content Include="Views\DoctorsEdit\Details.cshtml" />
+    <Content Include="Views\DoctorsEdit\Edit.cshtml" />
+    <Content Include="Views\DoctorsEdit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -338,8 +390,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006170030282_InitialMigration.resx">
@@ -362,6 +412,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006181158592_tempRoleTable1.resx">
       <DependentUpon>202006181158592_tempRoleTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006190500418_newMigration.resx">
+      <DependentUpon>202006190500418_newMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211036206_UpdatedMedicareServices.resx">
+      <DependentUpon>202006211036206_UpdatedMedicareServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211216027_changedServices.resx">
+      <DependentUpon>202006211216027_changedServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211217401_changedServices1.resx">
+      <DependentUpon>202006211217401_changedServices1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006220453283_ModelChanges.resx">
+      <DependentUpon>202006220453283_ModelChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006220630277_ModelChanges1.resx">
+      <DependentUpon>202006220630277_ModelChanges1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006221004382_minorModelChanges.resx">
+      <DependentUpon>202006221004382_minorModelChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006221047496_minorModelChanges1.resx">
+      <DependentUpon>202006221047496_minorModelChanges1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006221300345_majorChanges.resx">
+      <DependentUpon>202006221300345_majorChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

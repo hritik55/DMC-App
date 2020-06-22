@@ -1,0 +1,48 @@
+﻿<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function BtnClick() {
+        $ajax({
+            url: "/Patients/GetDoctorsList",
+            method: "GET",
+            success: function (data) {
+                console.log();
+            },
+            error: function (err) {
+                console.error(err);
+            }
+        })
+    }
+    $(document).ready(function () {
+        //Call EmpDetails jsonResult Method
+        $.get("/Patients/GetDoctorsList",
+        function GetAllDoctors (json) {
+            var tr;
+
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + json[i].Id + "</td>");
+                tr.append("<td>" + json[i].FirstName + " " + json[i].LastName + "</td>");
+                tr.append("<td>" + json[i].Sex + "</td>");
+                tr.append("<td>" + json[i].Age + "</td>");
+                tr.append("<td>" + json[i].PhoneNo + "</td>");
+                $('tbody').append(tr);
+            }
+        });
+    });
+
+</script>
+<input class="btn btn-success" type="button" onclick="GetAllDocotors()" value="Get AllD" />
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>PhoneNo</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+

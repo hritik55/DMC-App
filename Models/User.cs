@@ -9,16 +9,14 @@ namespace Diagnostic_Medical_Center.Models
 {
     public class User
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
+        [Key]
         public string UserId { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        public bool IsAdmin { get; set; }
-        public bool IsDoctor { get; set; }
-        public bool IsAgent { get; set; }
-        public bool IsPatient { get; set; }
-
+        public int RoleId { get; set; }
+        public virtual UserRole UserRole { get; set; }
+       
     }
 }

@@ -1,0 +1,77 @@
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<Diagnostic_Medical_Center.Models.Patient>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAgentDetails</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Diagnostic Medical Center", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>Dear - @User.Identity.Name</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Patient Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Contact Number</th>
+                    <th>Status</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.UserId</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Age</td>
+                        <td>@item.Sex</td>
+                        <td>@item.PhoneNo</td>
+                        @if (!item.RegistrationStatus)
+                        {
+                            <td style="color:red">Rejected</td>
+                        }
+                        else if (item.RegistrationStatus)
+                        {
+                            <td style="color:green">Accepted</td>
+                        }
+                        <td>@Html.ActionLink("Accept", "AcceptPatient", "Administration", new { @id = item.UserId}, null)</td>
+                        <td>
+                            @Html.ActionLink("Reject", "RejectPatient", "Administration", new { @id = item.UserId }, null)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div><button class="btn .btn-primary" onclick="location.href='@Url.Action("Index","Administration")'">Back</button></div>
+    </div>
+</body>
+</html>
+
