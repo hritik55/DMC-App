@@ -34,9 +34,9 @@ namespace Diagnostic_Medical_Center.Controllers
                         PhoneNo = patientView.PhoneNo,
                         Sex = patientView.Sex,
                         UserId = patientView.UserId,
-                        Password = Crypto.Hash(patientView.Password),
+                        Password = System.Web.Helpers.Crypto.Hash(patientView.Password),
                         RegistrationStatus = false,
-                        ConfirmPassword = Crypto.Hash(patientView.Password),
+                        ConfirmPassword = System.Web.Helpers.Crypto.Hash(patientView.Password),
                         RoleID = 3
                     };
                 var idExists = _context.Patients.Any(x => x.UserId == patient.UserId);
@@ -83,8 +83,8 @@ namespace Diagnostic_Medical_Center.Controllers
                     PhoneNo = adminView.PhoneNo,
                     VendorId = adminView.VendorId,
                     RegistrationStatus = true,
-                    Password = Crypto.Hash(adminView.Password),
-                    ConfirmPassword = Crypto.Hash(adminView.Password),
+                    Password = System.Web.Helpers.Crypto.Hash(adminView.Password),
+                    ConfirmPassword = System.Web.Helpers.Crypto.Hash(adminView.Password),
                     RoleId = 1
                 };
                 var idExists = _context.Admins.Any(x => x.VendorId == adminView.VendorId);
@@ -146,9 +146,9 @@ namespace Diagnostic_Medical_Center.Controllers
                     Age = doctorView.Age,
                     PhoneNo = doctorView.PhoneNo,
                     DoctorId = doctorView.DoctorId,
-                    Password = Crypto.Hash(doctorView.Password),
+                    Password = System.Web.Helpers.Crypto.Hash(doctorView.Password),
                     RegistrationStatus = false,
-                    ConfirmPassword = Crypto.Hash(doctorView.Password),
+                    ConfirmPassword = System.Web.Helpers.Crypto.Hash(doctorView.Password),
                     RoleId = 2
                 };
 
@@ -198,9 +198,9 @@ namespace Diagnostic_Medical_Center.Controllers
                     Sex = agentView.Sex,
                     PhoneNo = agentView.PhoneNo,
                     AgentId = agentView.AgentId,
-                    Password = Crypto.Hash(agentView.Password),
+                    Password = System.Web.Helpers.Crypto.Hash(agentView.Password),
                     RegistrationStatus = false,
-                    ConfirmPassword = Crypto.Hash(agentView.Password),
+                    ConfirmPassword = System.Web.Helpers.Crypto.Hash(agentView.Password),
                     RoleId = 4
                 };
 

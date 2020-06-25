@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.Appointment>
+
+@{
+    ViewBag.Title = "ShowAllAppointments";
+    Layout = null;
+}
+
+
+<table class="table table-striped table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicareID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentDay)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicareID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentDay)
+        </td>
+        <td>
+            <button class="btn btn-warning" onclick="location.href='@Url.Action("AcceptPatient","Doctors", new { @id = item.Id })'">Accept Patient</button>
+            <button class="btn btn-danger" onclick="location.href='@Url.Action("RejectPatient","Doctors", new { @id = item.Id })'">Reject Patient</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Completed","Doctors", new { @id = item.Id })'">Patient Attended</button>
+        </td>
+    </tr>
+}
+
+</table>

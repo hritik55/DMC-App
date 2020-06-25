@@ -17,8 +17,9 @@
         @Html.AntiForgeryToken()
         
     <div class="form-horizontal">
-        <h4>Patient</h4>
+
         <hr />
+        <h4>ViewBag.ValidationMessage</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -95,7 +96,7 @@
     }
     
 <div>
-    <a href="LoginManager/Signin">Back to Login</a>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
 </div>
 </body>
 </html>

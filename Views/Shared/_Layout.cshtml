@@ -22,22 +22,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                   
-
-                    @if (User.Identity.IsAuthenticated)
+                    <li>Dear - @ViewBag.Username</li>
+                    @if (ViewBag.Username != null)
                     {
-                        <li>Dear - @User.Identity.Name</li>
                         <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
                     }
-
                 </ul>
-                @Html.Partial("_LoginPartial")
+              
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+       
         <footer>
            
         </footer>

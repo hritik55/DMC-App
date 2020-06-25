@@ -25,10 +25,6 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>Dear - @User.Identity.Name</li>
-                    }
                 </ul>
             </div>
         </div>

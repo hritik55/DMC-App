@@ -27,26 +27,41 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
+                    <li><a href="#">Hi @ViewBag.Username</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        <div class="main-content">
-            <div class="side-nav">
-                <div class="link-container"><a href="#"><i class="fas fa-user fa-5x"></i><p>Account</p></a></div>
-                <a href="#"><i class="fas fa-user-md fa-5x"></i><p>Doctors</p></a>
-                <a href="#"><i class="far fa-calendar-check"></i><p>Appointments</p></a>
-                <a href="@Url.Action("CreateMedicareService", "Doctors")"><i class="fas fa-hand-holding-medical"></i><p>Medicare Services</p></a>
-            </div>
-            <div class="functions">
-
-            </div>
-
+    <div class="side-bar">
+        <a href="#"><i class="fas fa-user fa-5x"></i><br>Account</a><br>
+        <a href="#"><i class="fas fa-user-md fa-5x"></i><br>Doctors</a><br>
+        <a href="#"><i class="far fa-calendar-check"></i><br>Events</a><br>
+        <a href="@Url.Action("CreateMedicareService", "Doctors")"><i class="fas fa-hand-holding-medical"></i><br>Medicare<br>Services</a>
+    </div>
+    <div class="main">
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab1">View Appointments</a></li>
+                <li><a data-toggle="tab" href="#tab2">Medicare Services</a></li>
+            </ul>
         </div>
+        <div class="tab-content">
+            <div id="tab1" class="tab-pane fade in active">@Html.Action("ShowAllAppointments")</div>
+            <div id="tab2" class="tab-pane fade in">@Html.Action("ShowMedicareServices")</div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+       
+    </script>
 
 </body>
 </html>

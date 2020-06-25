@@ -167,7 +167,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\EditAgentController.cs" />
+    <Compile Include="Controllers\GetListsAndDetails.cs" />
     <Compile Include="Controllers\Helpers\AdminsEditController.cs" />
     <Compile Include="Controllers\Helpers\AgentsEditController.cs" />
     <Compile Include="Controllers\Helpers\DoctorsEditController.cs" />
@@ -182,7 +184,7 @@
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\Helpers\PatientsEditController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Cryto.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,20 +252,39 @@
     <Compile Include="Migrations\202006221300345_majorChanges.Designer.cs">
       <DependentUpon>202006221300345_majorChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006222328285_addedmedicaremodel.cs" />
+    <Compile Include="Migrations\202006222328285_addedmedicaremodel.Designer.cs">
+      <DependentUpon>202006222328285_addedmedicaremodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006230307313_newModelAppointment.cs" />
+    <Compile Include="Migrations\202006230307313_newModelAppointment.Designer.cs">
+      <DependentUpon>202006230307313_newModelAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006230431035_ChangestoAppointmentModel.cs" />
+    <Compile Include="Migrations\202006230431035_ChangestoAppointmentModel.Designer.cs">
+      <DependentUpon>202006230431035_ChangestoAppointmentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006231407301_AddedValidationinAppointment.cs" />
+    <Compile Include="Migrations\202006231407301_AddedValidationinAppointment.Designer.cs">
+      <DependentUpon>202006231407301_AddedValidationinAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Agent.cs" />
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MedicareService.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\AppointmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -272,6 +293,47 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\LandingPage.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -291,6 +353,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -375,10 +439,30 @@
     <Content Include="Views\DoctorsEdit\Details.cshtml" />
     <Content Include="Views\DoctorsEdit\Edit.cshtml" />
     <Content Include="Views\DoctorsEdit\Index.cshtml" />
+    <Content Include="Views\Doctors\CreateMedicareService.cshtml" />
+    <Content Include="Views\Doctors\EditMedicareService.cshtml" />
+    <Content Include="Views\Appointment\BookAppointment.cshtml" />
+    <Content Include="Views\Administration\CreateAgent.cshtml" />
+    <Content Include="Views\Administration\EditAgent.cshtml" />
+    <Content Include="Views\Doctors\ShowAllAppointments.cshtml" />
+    <Content Include="Views\Doctors\ShowMedicareServices.cshtml" />
+    <Content Include="Views\Patients\GetDoctorsList.cshtml" />
+    <Content Include="Views\Patients\GetAgentList.cshtml" />
+    <Content Include="Views\Patients\GetDoctorDetails.cshtml" />
+    <Content Include="Views\Patients\GetAgentDetails.cshtml" />
+    <Content Include="Views\Patients\GetMedicareDetails.cshtml" />
+    <Content Include="Views\Patients\ViewAppointments.cshtml" />
+    <Content Include="Views\Patients\GetServiceList.cshtml" />
+    <Content Include="Views\Agents\GetDoctorsList.cshtml" />
+    <Content Include="Views\Agents\GetAgentList.cshtml" />
+    <Content Include="Views\Agents\GetServiceList.cshtml" />
+    <Content Include="Views\Agents\GetDoctorDetails.cshtml" />
+    <Content Include="Views\Agents\GetAgentDetails.cshtml" />
+    <Content Include="Views\Agents\GetMedicareDetails.cshtml" />
+    <Content Include="Views\Agents\ViewAppointments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -439,6 +523,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006221300345_majorChanges.resx">
       <DependentUpon>202006221300345_majorChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006222328285_addedmedicaremodel.resx">
+      <DependentUpon>202006222328285_addedmedicaremodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006230307313_newModelAppointment.resx">
+      <DependentUpon>202006230307313_newModelAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006230431035_ChangestoAppointmentModel.resx">
+      <DependentUpon>202006230431035_ChangestoAppointmentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006231407301_AddedValidationinAppointment.resx">
+      <DependentUpon>202006231407301_AddedValidationinAppointment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

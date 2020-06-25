@@ -27,24 +27,33 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
+                <li><a href="#"> Hi @ViewBag.Username</a></li>
             </ul>
         </div>
     </div>
 </div>
-    
-<div class="main-content">
-    <div class="side-nav">
+    <div class="side-bar">
         <div class="link-container"><a href="#"><i class="fas fa-user fa-5x"></i><p>Account</p></a></div>
         <a href="#"><i class="fas fa-user-md fa-5x"></i><p>Doctors</p></a>
         <a href="#"><i class="fas fa-vial fa-5x"></i><p>Your Tests</p></a>
+        <a href="@Url.Action("BookAppointment", "Appointment")"><i class="fas fa-calendar-check fa-5x"></i><p>Book Appointment</p></a>
     </div>
-    <div class="functions">
-        
+      <div class="main">
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab1">View Appointments</a></li>
+                <li><a data-toggle="tab" href="#tab2">View Medicare Services</a></li>
+                <li><a data-toggle="tab" href="#tab3">View Doctors</a></li>
+                <li><a data-toggle="tab" href="#tab4">View Agents</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div id="tab1" class="tab-pane fade in active">@Html.Action("ViewAppointments")</div>
+            <div id="tab2" class="tab-pane fade in">@Html.Action("GetServiceList")</div>
+            <div id="tab3" class="tab-pane fade in">@Html.Action("GetDoctorsList")</div>
+            <div id="tab4" class="tab-pane fade in">@Html.Action("GetAgentList")</div>
+        </div>
     </div>
-    <div style="margin:20px">
-       @Html.Partial("_DoctorList")
-    </div>
-</div>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 

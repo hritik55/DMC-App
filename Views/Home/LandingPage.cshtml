@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Diagnostic Medical Centre</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/LandingPage.css" rel="stylesheet" type="text/css"/>
@@ -59,38 +59,13 @@
 
     <div class="split right">
         <div class="centered">
-            @using (Html.BeginForm())
-             {
-                @Html.AntiForgeryToken()
-        
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                 <div class="form-group">
-                     @Html.LabelFor(m => m.UserId, new { @class = "col-md-2 control-label" })
-                     <div class="col-md-10">
-                         @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
-                         @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "text-danger" })
-                     </div>
-                 </div>
-                 <div style="width:10px"></div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-      
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-             }
+                  
+            <h2>Already a Member?</h2>
+            <button class="btn btn-lg btn-primary" onclick="location.href='@Url.Action("Signin","LoginManager")'">Log in</button>
+           
         </div>
+    </div>
        
-
-        </div>
-
 </body>
 
 </html>

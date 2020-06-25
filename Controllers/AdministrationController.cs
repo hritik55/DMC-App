@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Diagnostic_Medical_Center.Models;
 using System.Data.Entity;
+using System.Net;
 
 namespace Diagnostic_Medical_Center.Controllers
 {
@@ -15,6 +16,18 @@ namespace Diagnostic_Medical_Center.Controllers
         // GET: Administration
         public ActionResult Index()
         {
+            try
+            {
+                if (Session["User"] != null)
+                {
+                    var currentUser = Session["User"] as Admin;
+                    ViewBag.User = currentUser.FirstName;
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -134,7 +147,6 @@ namespace Diagnostic_Medical_Center.Controllers
             var pendingDoctor = _context.Doctors.Single(x => x.DoctorId == id);
             pendingDoctor.RegistrationStatus = false;
             pendingDoctor.ConfirmPassword = pendingDoctor.Password;
-
             _context.SaveChanges();
             return RedirectToAction("GetDoctorDetails");
         }
@@ -174,22 +186,56 @@ namespace Diagnostic_Medical_Center.Controllers
             return RedirectToAction("GetAdminDetails");
         }
 
-        public ActionResult UpdateAgent()
+        
+        public ActionResult CreateAgent()
         {
-            return View();
+            var agent = _context.Agents.ToList();
+            if (agent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(agent);
+        }
+
+        public ActionResult EditAgent(string id)
+        {
+            var agent = _context.Agents.Where(a => a.AgentId == id).FirstOrDefault();
+            return View(agent);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateAgent([Bind(Include = "FirstName,LastName,Age,Sex,PhoneNo,RegistrationStatus")] Agent agent)
+        public ActionResult EditAgent(Agent agent)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Entry(agent).State = EntityState.Modified;
-                _context.SaveChanges();
+
+                if (ModelState.IsValid)
+                {
+                    var agentInDb = _context.Agents.Single(a => a.AgentId == agent.AgentId);
+                    agentInDb.FirstName = agent.FirstName;
+                    agentInDb.LastName = agent.LastName;
+                    agentInDb.PhoneNo = agent.PhoneNo;
+                    agentInDb.Age = agent.Age;
+                    agentInDb.ConfirmPassword = agentInDb.Password;
+                    ViewBag.ValidationMessage = "Your changes have been saved!";
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }catch(Exception e)
+            {
+            
+                ModelState.AddModelError(string.Empty, "Check your details and Try Again!");
+                
             }
+           
             return View(agent);
+
         }
+
+
+
+
     }
 
    

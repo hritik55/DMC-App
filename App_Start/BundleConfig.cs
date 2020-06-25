@@ -27,6 +27,12 @@ namespace Diagnostic_Medical_Center
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/toastr.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                "~/Scripts/jquery-ui-1.12.1.js"));
+
+            bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
+                "~/Content/jquery-ui-css"));
             
         }
     }

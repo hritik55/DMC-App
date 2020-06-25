@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.Appointment>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewAppointments</title>
+</head>
+<body>
+    <table class="table table-striped table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicareID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentDay)
+            </th>
+            <th>
+                Approval Status
+            </th>
+          
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicareID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentDay)
+            </td>
+            <td>
+               @ViewBag.Status
+            </td>
+            
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Diagnostic_Medical_Center
 {
-    public static class Cryto
+    public static class Crypto
     {
         public static string Hash(string value)
         {

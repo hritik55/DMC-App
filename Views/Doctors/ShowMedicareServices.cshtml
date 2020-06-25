@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.MedicareService>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Medicare Services</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Eligibility)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Eligibility)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditMedicareService", new { id = item.ServiceID })
+        </td>
+    </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.Agent>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAgentList</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+            grid-gap: 1rem;
+            font-family: 'Muli', sans-serif
+        }
+
+            .grid > div {
+                background: grey;
+                padding: 1rem;
+            }
+
+        .content {
+            font-weight: 200;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 5px;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/3a5999d18b.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid">
+        @foreach (var item in Model)
+        {
+            <div style="color: white">
+                <i class="fas fa-user-md fa-5x"></i>
+                <div class="content">
+                    @Html.DisplayFor(model => item.FirstName) @Html.DisplayFor(model => item.LastName)
+                    @Html.DisplayFor(model => item.AgentId)
+                    <button class="btn btn-success" onclick="location.href='@Url.Action("GetAgentDetails","Patients", new { @id = item.AgentId })'">Get Details</button>
+                </div>
+
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -63,9 +63,7 @@
                             <td>Accepted</td>
                         }
                         <td>@Html.ActionLink("Accept", "AcceptAdmin", "Administration", new { @id = item.VendorId }, null)</td>
-                        <td>
-                            @Html.ActionLink("Reject", "RejectAdmin", "Administration", new { @id = item.VendorId }, null)
-                        </td>
+                        <td>@Html.ActionLink("Reject", "RejectAdmin", "Administration", new { @id = item.VendorId }, null)</td>
                     </tr>
                 }
             </tbody>

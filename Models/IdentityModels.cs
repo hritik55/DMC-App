@@ -38,6 +38,8 @@ namespace Diagnostic_Medical_Center.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<MedicareService> MedicareServices { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
 
     }
 }

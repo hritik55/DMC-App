@@ -26,39 +26,67 @@ namespace Diagnostic_Medical_Center.Controllers
         [HttpPost]
         public ActionResult Signin(User user)
         {
-            var validUser = _context.Users.Where(a => a.UserId == user.UserId).FirstOrDefault();
-
-            if(validUser != null)
+            try
             {
-                if(string.Compare(Crypto.Hash(user.Password),validUser.Password) == 0)
+
+                var validUser = _context.Users.Where(a => a.UserId == user.UserId).FirstOrDefault();
+
+                if (validUser != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserId, false);
-                    switch (validUser.RoleId)
+                    if (string.Compare(System.Web.Helpers.Crypto.Hash(user.Password), validUser.Password) == 0)
                     {
-                        case 1:
-                            return RedirectToAction("Index", "Administration");
-                        case 2:
-                            return RedirectToAction("DoctorsIndex", "Doctors");
-                        case 3:
-                            return RedirectToAction("PatientsIndex", "Patients");
-                        case 4:
-                            return RedirectToAction("AgentIndex", "Agents");
+                        FormsAuthentication.SetAuthCookie(user.UserId, false);
+
+                        switch (validUser.RoleId)
+                        {
+                            case 1:
+                                Admin a = _context.Admins
+                                    .Where(x => x.VendorId == user.UserId)
+                                    .FirstOrDefault();
+                                Session["User"] = a;
+                                return RedirectToAction("Index", "Administration");
+                            case 2:
+                                Doctor d = _context.Doctors
+                                    .Where(o => o.DoctorId == user.UserId)
+                                    .FirstOrDefault();
+                                Session["User"] = d;
+                                return RedirectToAction("DoctorsIndex", "Doctors");
+                            case 3:
+                                Patient p = _context.Patients
+                                    .Where(e => e.UserId == user.UserId)
+                                    .FirstOrDefault();
+                                Session["User"] = p;
+                                return RedirectToAction("PatientsIndex", "Patients");
+                            case 4:
+                                Agent g = _context.Agents
+                                    .Where(t => t.AgentId == user.UserId)
+                                    .FirstOrDefault();
+                                Session["User"] = g;
+                                return RedirectToAction("AgentIndex", "Agents");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Passwords do not match");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Passwords do not match");
+                    ModelState.AddModelError("", "Invalid Username or Password");
                 }
-            }
-            else
+
+            }catch(Exception e)
             {
                 ModelState.AddModelError("", "Invalid Username or Password");
             }
-            return View();
+
+                    return View();
         }
 
         public ActionResult Logout()
         {
+            Session["User"] = null;
+            ViewBag.User = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("Signin");
         }

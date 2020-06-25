@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.MedicareService>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetDoctorsList</title>
+
+    <style>
+        .grid {
+            display: grid;
+            grid-template-rows: repeat(auto-fill,minmax(100px,1fr));
+            grid-gap: 2rem;
+            font-family: 'Muli', sans-serif
+        }
+
+        .grid > div {
+            background: grey;
+            padding: 1rem;
+        }
+
+        .content {
+            font-weight: 200;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 5px;
+        }
+
+        .content a {
+            color: white
+        }
+
+        .content button{
+            bottom: 0;
+            top:40px;
+            padding: 2px;
+            color: dodgerblue;
+            background-color: #1e1e1e
+        }
+
+        .butn-container{
+            bottom:0;
+        }
+
+    </style>
+    <script src="https://kit.fontawesome.com/3a5999d18b.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid">
+        @foreach (var item in Model)
+        {
+            <div style="color: white">
+                <i class="fas fa-microscope fa-5x"></i>
+                <div class="content">
+                    @Html.DisplayFor(model => item.ServiceName)
+                    @Html.DisplayFor(model => item.ServiceID)
+                    <div class="butn-container"><button class="btn" onclick="location.href='@Url.Action("GetMedicareDetails","Patients", new { @id = item.ServiceID })'">Get Details</button></div>
+                </div>
+            </div>
+           
+        }
+    </div>
+    </body>
+</html>
