@@ -65,6 +65,7 @@ namespace Diagnostic_Medical_Center.Controllers
 
         public ActionResult AdminRegister()
         {
+           
             return View();
         }
 
@@ -127,6 +128,8 @@ namespace Diagnostic_Medical_Center.Controllers
             return View();
         }
 
+
+
         public ActionResult DoctorRegister()
         {
             return View();
@@ -180,6 +183,11 @@ namespace Diagnostic_Medical_Center.Controllers
 
         public ActionResult AgentRegister()
         {
+            if (Session["User"] != null)
+            {
+                var tempUser = Session["User"] as Admin;
+                ViewBag.Username = tempUser.FirstName;
+            }
             return View();
         }
 
@@ -187,43 +195,58 @@ namespace Diagnostic_Medical_Center.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AgentRegister(Agent agentView)
         {
-            if (ModelState.IsValid)
+            if (Session["User"] != null)
+            {
+                var tempUser = Session["User"] as Admin;
+                ViewBag.Username = tempUser.FirstName;
+            }
+            try
             {
 
-                var agent = new Agent()
+                if (ModelState.IsValid)
                 {
-                    FirstName = agentView.FirstName,
-                    LastName = agentView.LastName,
-                    Age = agentView.Age,
-                    Sex = agentView.Sex,
-                    PhoneNo = agentView.PhoneNo,
-                    AgentId = agentView.AgentId,
-                    Password = System.Web.Helpers.Crypto.Hash(agentView.Password),
-                    RegistrationStatus = false,
-                    ConfirmPassword = System.Web.Helpers.Crypto.Hash(agentView.Password),
-                    RoleId = 4
-                };
 
-                var idExists = _context.Agents.Any(x => x.AgentId == agentView.AgentId);
+                    var agent = new Agent()
+                    {
+                        FirstName = agentView.FirstName,
+                        LastName = agentView.LastName,
+                        Age = agentView.Age,
+                        Sex = agentView.Sex,
+                        PhoneNo = agentView.PhoneNo,
+                        AgentId = agentView.AgentId,
+                        Password = System.Web.Helpers.Crypto.Hash(agentView.Password),
+                        RegistrationStatus = false,
+                        ConfirmPassword = System.Web.Helpers.Crypto.Hash(agentView.Password),
+                        RoleId = 4
+                    };
 
-                if (!idExists)
-                {
-                    _context.Agents.Add(agent);
-                    _context.SaveChanges();
-                    ViewBag.ValidationMessage = "Your Details are saved successfully";
-                    ModelState.Clear();
+                    var idExists = _context.Agents.Any(x => x.AgentId == agentView.AgentId);
+
+                    if (!idExists)
+                    {
+                        _context.Agents.Add(agent);
+                        _context.SaveChanges();
+                        ViewBag.ValidationMessage = "Your Details are saved successfully";
+                        ModelState.Clear();
+                        return View();
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "User Id Already Exists! Try another name.");
+                        agent.AgentId = string.Empty;
+                        agent.Password = string.Empty;
+                    }
+
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "User Id Already Exists! Try another name.");
-                    agent.AgentId = string.Empty;
-                    agent.Password = string.Empty;
+                    ModelState.AddModelError(string.Empty, "Check your details and try again");
+                    return View();
                 }
-               
-            }
-            else
+            }catch(Exception e)
             {
                 ModelState.AddModelError(string.Empty, "Check your details and try again");
+                return View();
             }
 
             return View();

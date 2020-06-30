@@ -52,18 +52,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="grid">
+    <div class="panel-group" id="accordion">
         @foreach (var item in Model)
         {
-            <div style="color: white">
-                <i class="fas fa-microscope fa-5x"></i>
-                <div class="content">
-                    @Html.DisplayFor(model => item.ServiceName)
-                    @Html.DisplayFor(model => item.ServiceID)
-                    <div class="butn-container"><button class="btn" onclick="location.href='@Url.Action("GetMedicareDetails","Patients", new { @id = item.ServiceID })'">Get Details</button></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <i class="fas fa-microscope fa-3x"></i>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#@item.ServiceID">@item.ServiceID</a>
+                </h4>
+            </div>
+            <div id="@item.ServiceID" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Html.Action("GetMedicareDetails", "Patients", new { @id = item.ServiceID })
                 </div>
             </div>
-           
+        </div>
         }
     </div>
     </body>

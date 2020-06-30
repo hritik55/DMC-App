@@ -21,7 +21,7 @@ namespace Diagnostic_Medical_Center.Controllers
                 if (Session["User"] != null)
                 {
                     var currentUser = Session["User"] as Admin;
-                    ViewBag.User = currentUser.FirstName;
+                    ViewBag.Username = currentUser.FirstName;
                 }
             }
             catch
@@ -35,7 +35,7 @@ namespace Diagnostic_Medical_Center.Controllers
         //Agent
         public ActionResult GetAgentDetails()
         {
-            List<Agent> agentList = (from agents in _context.Agents select agents).ToList();
+            List<Agent> agentList = _context.Agents.Where(a => a.RegistrationStatus == false).ToList();
 
             return View("GetAgentDetails",agentList);
         }
@@ -54,25 +54,25 @@ namespace Diagnostic_Medical_Center.Controllers
             };
             _context.Users.Add(user);
             _context.SaveChanges();
-            return RedirectToAction("GetAgentDetails");
+            return RedirectToAction("Index");
         }
 
        
         public ActionResult RejectAgent(string id)
         {
             var acceptStatus = _context.Agents.Single(x => x.AgentId == id);
-            acceptStatus.ConfirmPassword = acceptStatus.Password;
-            acceptStatus.RegistrationStatus = false;
-
+            //acceptStatus.ConfirmPassword = acceptStatus.Password;
+            //acceptStatus.RegistrationStatus = false;
+            _context.Agents.Remove(acceptStatus);
             _context.SaveChanges();
-            return RedirectToAction("GetAgentDetails");
+            return RedirectToAction("Index");
         }
 
 
         //Patient
         public ActionResult GetPatientDetails()
         {
-            List<Patient> patientList = (from patients in _context.Patients select patients).ToList();
+            List<Patient> patientList = _context.Patients.Where(a => a.RegistrationStatus == false).ToList();
 
             return View("GetPatientDetails", patientList);
             
@@ -93,7 +93,7 @@ namespace Diagnostic_Medical_Center.Controllers
             };
             _context.Users.Add(user);
             _context.SaveChanges(); 
-            return RedirectToAction("GetPatientDetails");
+            return RedirectToAction("Index");
         }
 
 
@@ -113,13 +113,13 @@ namespace Diagnostic_Medical_Center.Controllers
                 _context.SaveChanges();
             }
 
-            return RedirectToAction("GetPatientDetails");
+            return RedirectToAction("Index");
         }
 
         //Doctor
         public ActionResult GetDoctorDetails()
         {
-            List<Doctor> doctorList = (from doctors in _context.Doctors select doctors).ToList();
+            List<Doctor> doctorList = _context.Doctors.Where(a => a.RegistrationStatus == false).ToList();
             return View("GetDoctorDetails", doctorList);
         }
 
@@ -138,7 +138,7 @@ namespace Diagnostic_Medical_Center.Controllers
             };
             _context.Users.Add(user);
             _context.SaveChanges();
-            return RedirectToAction("GetDoctorDetails");
+            return RedirectToAction("Index");
         }
 
 
@@ -147,15 +147,68 @@ namespace Diagnostic_Medical_Center.Controllers
             var pendingDoctor = _context.Doctors.Single(x => x.DoctorId == id);
             pendingDoctor.RegistrationStatus = false;
             pendingDoctor.ConfirmPassword = pendingDoctor.Password;
+            _context.Doctors.Remove(pendingDoctor);
             _context.SaveChanges();
-            return RedirectToAction("GetDoctorDetails");
+            return RedirectToAction("Index");
         }
 
         //Admin
         public ActionResult GetAdminDetails()
         {
-            List<Admin> adminList = (from admins in _context.Admins select admins).ToList();
+            List<Admin> adminList = _context.Admins.Where(a => a.RegistrationStatus == false).ToList();
             return View("GetAdminDetails", adminList);
+        }
+
+        public ActionResult ViewTestRequests()
+        {
+            var appointments = _context.Appointments.Where(a => a.Approved == true && a.Completed == false).ToList();
+            return View(appointments);
+        }
+
+        [HttpGet]
+        public ActionResult UpdateTestResults(int id)
+        {
+            var Exists = _context.TestRequests.Any(x => x.Id == id);
+            if(id != 0 && !Exists)
+            {
+
+                var testInfo = _context.Appointments.Find(id);
+                TestRequest newRequestData = new TestRequest()
+                {
+                   
+                    DoctorId = testInfo.DoctorId,
+                    PatientId = testInfo.PatientId,
+                    AppointmentId = testInfo.Id,
+                    result = "",
+                    baseValue = "",
+
+                }; 
+                return View(newRequestData);
+            }
+            else
+            {
+
+                return View();
+            }
+           
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTestResults(TestRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                var appointmentToRemove = _context.Appointments.Where(x => x.Id == request.Id).FirstOrDefault();
+                _context.TestRequests.Add(request);
+                appointmentToRemove.Completed = true;
+                //_context.Appointments.Remove(appointmentToRemove);
+                _context.SaveChanges();
+                ModelState.Clear();
+                ViewBag.Message = "Test Results have been successfully updated!";
+            }
+
+            return View();
+           
         }
 
 
@@ -172,7 +225,7 @@ namespace Diagnostic_Medical_Center.Controllers
             };
             _context.Users.Add(user);
             _context.SaveChanges();
-            return RedirectToAction("GetAdminDetails");
+            return RedirectToAction("Index");
         }
 
 
@@ -181,9 +234,9 @@ namespace Diagnostic_Medical_Center.Controllers
             var pendingAdmin = _context.Admins.Single(x => x.VendorId == id);
             pendingAdmin.RegistrationStatus = false;
 
-
+            _context.Admins.Remove(pendingAdmin);
             _context.SaveChanges();
-            return RedirectToAction("GetAdminDetails");
+            return RedirectToAction("Index");
         }
 
         
@@ -232,6 +285,8 @@ namespace Diagnostic_Medical_Center.Controllers
             return View(agent);
 
         }
+
+
 
 
 

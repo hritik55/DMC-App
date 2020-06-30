@@ -1,20 +1,10 @@
 ﻿@model Diagnostic_Medical_Center.Models.Agent
 
 @{
-    
+    Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetAgentDetails</title>
-</head>
-<body>
-    <div>
-        <h4>Agent</h4>
-        <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -57,9 +47,4 @@
             </dd>
     
         </dl>
-    </div>
-    <p>
-        <button class="btn btn-primary" onclick="location.href = '@Url.Action("PatientsIndex", "Patients")'">Back</button>
-    </p>
-</body>
-</html>
+    

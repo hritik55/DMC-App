@@ -28,6 +28,8 @@ namespace Diagnostic_Medical_Center.Controllers
 
         public ActionResult CreateMedicareService()
         {
+            var tempUser = Session["User"] as Doctor;
+            ViewBag.Username = tempUser.FirstName;
             return View();
         }
 
@@ -37,21 +39,31 @@ namespace Diagnostic_Medical_Center.Controllers
             var serviceExists = _context.MedicareServices.Where(s => s.ServiceID == service.ServiceID).FirstOrDefault();
             var tempUser = Session["User"] as Doctor;
 
-            if(ModelState.IsValid && serviceExists == null)
+            try {
+                if (ModelState.IsValid && serviceExists == null)
+                {
+                    service.DoctorId = tempUser.DoctorId;
+                    _context.MedicareServices.Add(service);
+                    _context.SaveChanges();
+                    ViewBag.ValidationMessage = "The Service has been successfully added!";
+                    ModelState.Clear();
+                    ViewBag.Username = tempUser.FirstName;
+                    return View();
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Check the details provided and Try Again!");
+                    ViewBag.Username = tempUser.FirstName;
+                    return View();
+                }
+            }catch(Exception e)
             {
-                service.DoctorId = tempUser.DoctorId;
-                _context.MedicareServices.Add(service);
-                _context.SaveChanges();
-                ViewBag.ValidationMessage = "The Service has been successfully added!";
-                ModelState.Clear();
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty,"Check the details provided and Try Again!");
+                return View("_Error");
             }
 
-            return View();
         }
+
+      
 
         public ActionResult ShowMedicareServices()
         {
@@ -93,7 +105,7 @@ namespace Diagnostic_Medical_Center.Controllers
         public ActionResult ShowAllAppointments()
         {
             var user = (Doctor)Session["User"];
-            var appointments = _context.Appointments.Where(a => a.DoctorId == user.DoctorId).ToList();
+            var appointments = _context.Appointments.Where(a => a.DoctorId == user.DoctorId && a.Completed == false).ToList();
             return View(appointments);
         }
 
@@ -111,7 +123,8 @@ namespace Diagnostic_Medical_Center.Controllers
         {
             var pendingAppointment = _context.Appointments.Single(x => x.Id == id);
             pendingAppointment.Approved = false;
-            _context.Appointments.Remove(pendingAppointment);
+            pendingAppointment.Completed = true;
+            //_context.Appointments.Remove(pendingAppointment);
             _context.SaveChanges();
             return RedirectToAction("DoctorsIndex");
         }
@@ -120,7 +133,7 @@ namespace Diagnostic_Medical_Center.Controllers
         {
             
             var pendingAppointment = _context.Appointments.Single(x => x.Id == id);
-            if(pendingAppointment.Approved == true)
+            if(pendingAppointment.Approved == true )
             {
                 pendingAppointment.Completed = true;
                _context.Appointments.Remove(pendingAppointment);
@@ -129,6 +142,35 @@ namespace Diagnostic_Medical_Center.Controllers
            
             return RedirectToAction("DoctorsIndex");
         }
+
+        public ActionResult ViewResults()
+        {
+            var tempUser = Session["User"] as Doctor;
+            var testList = _context.TestRequests.Where(t => t.DoctorId == tempUser.DoctorId).ToList();
+
+            return View(testList);
+        }
+
+        public ActionResult ViewAllPatients()
+        {
+            var tempUser = Session["User"] as Doctor;
+            var patientList = _context.Appointments.Where(t => t.DoctorId == tempUser.DoctorId).ToList();
+
+            return View(patientList);
+        }
+
+        public ActionResult GetAllTests(string id)
+        {
+            var testID = _context.TestRequests.Where(t => t.PatientId == id).ToList();
+            return View(testID);
+        }
+
+        public ActionResult GetPatientDetails(string id)
+        {
+            var patientDetails = _context.Patients.Where(t => t.UserId == id).FirstOrDefault();
+            return View(patientDetails);
+        }
+
 
     }
 }

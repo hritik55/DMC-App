@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.TestRequest>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewTestResults</title>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .info-panel {
+            display: flex;
+            align-items: stretch;
+            padding: 0px;
+        }
+
+        .panel-default {
+            margin: 5px;
+            padding: 0px;
+            box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.5);
+        }
+
+        .panel:hover {
+            box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+        }
+
+        .user-id {
+            flex-grow: 1;
+            padding: 20px 0px 30px 20px;
+        }
+
+            .user-id h4 {
+                margin: 0;
+                font-weight: 700;
+                font-family: "Source Sans Pro", sans-serif;
+                line-height: 5px;
+                color: #393939
+            }
+
+        .name, .phone {
+            font-weight: 700;
+            font-family: "Source Sans Pro", sans-serif;
+            font-size: 20px;
+            color: #393939;
+            flex-grow: 2;
+        }
+
+        .gender {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-span {
+            font-size: 20px;
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: 700;
+        }
+
+        .separator {
+            font-size: 30px;
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: 300;
+        }
+
+        sup {
+            font-weight: 600;
+            font-family: "Source Sans Pro", sans-serif;
+            color: #858585;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    @foreach (var item in Model)
+    {
+        <button type="button" class="collapsible">@Html.DisplayFor(modelItem => item.Id)</button>
+        <div class="content">
+            <p>Your Test Request id: @item.Id</p>
+            <p>Doctor's Id: @item.DoctorId</p>
+            <p>Your test Result is: @item.result</p>
+            <p>Reference Level: @item.baseValue</p>
+        </div>
+    }
+
+</body>
+</html>

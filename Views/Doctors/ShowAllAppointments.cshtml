@@ -31,11 +31,32 @@
             @Html.DisplayFor(modelItem => item.AppointmentDay)
         </td>
         <td>
-            <button class="btn btn-warning" onclick="location.href='@Url.Action("AcceptPatient","Doctors", new { @id = item.Id })'">Accept Patient</button>
-            <button class="btn btn-danger" onclick="location.href='@Url.Action("RejectPatient","Doctors", new { @id = item.Id })'">Reject Patient</button>
-            <button class="btn btn-success" onclick="location.href='@Url.Action("Completed","Doctors", new { @id = item.Id })'">Patient Attended</button>
+            @if(item.Approved == false && item.Completed == false){
+            <button class="btn btn-warning" id="acceptBtn" onclick="location.href='@Url.Action("AcceptPatient","Doctors", new { @id = item.Id })'">Accept Patient</button>
+            <button class="btn btn-danger" id="rejectBtn" onclick="location.href='@Url.Action("RejectPatient","Doctors", new { @id = item.Id })'">Reject Patient</button>
+            }
+            else if(item.Approved == true && item.Completed == false)
+            {
+            <button class="btn btn-success" id="attendedBtn" onclick="location.href='@Url.Action("Completed","Doctors", new { @id = item.Id })'">Patient Attended</button>
+            }
+
         </td>
     </tr>
 }
-
 </table>
+
+@*<script>
+    var acceptBtn = document.getElementById("acceptBtn");
+    var rejectBtn = document.getElementById("acceptBtn");
+    var attendedBtn = document.getElementById("acceptBtn");
+
+    acceptBtn.addEventListener("click", function () {
+        rejectBtn.style.display = "none";
+        
+    });
+
+    rejectBtn.addEventListener("click", function () {
+        acceptBtn.style.display = "none";
+        attendedBtn.style.display = "none";
+    });
+</script>*@

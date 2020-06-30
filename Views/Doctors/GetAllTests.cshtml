@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.TestRequest>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAllTests</title>
+</head>
+<body>
+    
+        <div class="panel-group">
+            @foreach (var item in Model)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#@item.Id">ID: @item.Id</a>
+                        </h4>
+                    </div>
+                    <div id="@item.Id" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Result : @Html.DisplayFor(modelItem => item.result)></p>
+                            <p>Reference: @Html.DisplayFor(modelItem => item.baseValue)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+           
+</body>
+</html>

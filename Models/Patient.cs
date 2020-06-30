@@ -37,7 +37,7 @@ namespace Diagnostic_Medical_Center.Models
         public string ConfirmPassword { get; set; }
         public int RoleID {get; set; }
         public UserRole UserRole { get; set; }
-        public ICollection<Test> Tests { get; set; }
+        
     }
      
 }

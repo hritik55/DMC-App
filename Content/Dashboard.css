@@ -5,8 +5,8 @@
     top: 0;
     z-index: 1;
     padding-top: 100px;
-    width: 100px;
-    background-color: #414141;
+    width: 140px;
+    background-color: #1f8aaa;
     position: fixed;
     height: 100%;
     overflow-x: hidden;
@@ -22,8 +22,9 @@
 }
 
 .side-bar i{
-    font-size: 50px;
+    font-size: 30px;
     padding-bottom: 5px;
+    color: antiquewhite;
 }
 
 .side-bar a{
@@ -31,6 +32,7 @@
     font-size: 12px;
     line-height: 1.2em;
     text-decoration: none;
+    color:aliceblue;
 }
 
 .tab-content{
@@ -38,10 +40,12 @@
 }
 
 ul.nav.nav-tabs li:not(.active) a{
-    background-color: #eeeeee;
+    background-color: #ffffff;
     color: grey;
 }
 
-ul.nav.nav-tabs li.active a{
+ul.nav.nav-tabs li.active a {
     border-top: 3px solid #1f8aaa;
+    background-color: #ffffff;
+    color: #0188b4;
 }

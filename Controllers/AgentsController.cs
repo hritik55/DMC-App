@@ -101,6 +101,7 @@ namespace Diagnostic_Medical_Center.Controllers
                 {
                     ViewBag.Status = "Contact your Doctor or Agent for Test Results.";
                     break;
+
                 }
                 else if (a.Approved == false && a.Completed == false)
                 {

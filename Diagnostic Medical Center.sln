@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostic Medical Center", "Diagnostic Medical Center.csproj", "{C2CCE015-FDB9-40C7-8A23-00794E5F9921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostic Medical Center.Tests", "..\Diagnostic Medical Center.Tests\Diagnostic Medical Center.Tests.csproj", "{AADCFB9D-229F-4813-8E02-963AF4C6A31E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C2CCE015-FDB9-40C7-8A23-00794E5F9921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2CCE015-FDB9-40C7-8A23-00794E5F9921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2CCE015-FDB9-40C7-8A23-00794E5F9921}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AADCFB9D-229F-4813-8E02-963AF4C6A31E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AADCFB9D-229F-4813-8E02-963AF4C6A31E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AADCFB9D-229F-4813-8E02-963AF4C6A31E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AADCFB9D-229F-4813-8E02-963AF4C6A31E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

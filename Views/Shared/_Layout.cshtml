@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>DMC - Diagnostic Medical Centre</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -21,10 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>Dear - @ViewBag.Username</li>
-                    @if (ViewBag.Username != null)
+                    @if (@ViewBag.Username == null)
                     {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    }
+
+                    @if (@ViewBag.Username != null)
+                    {
+                        <li><a href="#">Hi @ViewBag.Username</a></li>
                         <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
                     }
                 </ul>

@@ -12,9 +12,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
     <link href="~/Content/Dashboard.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/3a5999d18b.js" crossorigin="anonymous"></script>
+    <style>
+
+        .tab-content {
+            margin-top: 10px;
+        }
+
+        ul.nav.nav-tabs li:not(.active) a {
+            background-color: #ffffff;
+            color: grey;
+        }
+
+        ul.nav.nav-tabs li.active a {
+            border-top: 3px solid #1f8aaa;
+            background-color: #0188b4;
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" >
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,8 +43,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
                 <li><a href="#"> Hi @ViewBag.Username</a></li>
+                <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
             </ul>
         </div>
     </div>
@@ -36,7 +53,7 @@
         <div class="link-container"><a href="#"><i class="fas fa-user fa-5x"></i><p>Account</p></a></div>
         <a href="#"><i class="fas fa-user-md fa-5x"></i><p>Doctors</p></a>
         <a href="#"><i class="fas fa-vial fa-5x"></i><p>Your Tests</p></a>
-        <a href="@Url.Action("BookAppointment", "Appointment")"><i class="fas fa-calendar-check fa-5x"></i><p>Book Appointment</p></a>
+        <a href="@Url.Action("BookAppointment", "Patients")"><i class="fas fa-calendar-check fa-5x"></i><p>Book<br>Appointment</p></a>
     </div>
       <div class="main">
         <div>
@@ -44,14 +61,15 @@
                 <li class="active"><a data-toggle="tab" href="#tab1">View Appointments</a></li>
                 <li><a data-toggle="tab" href="#tab2">View Medicare Services</a></li>
                 <li><a data-toggle="tab" href="#tab3">View Doctors</a></li>
-                <li><a data-toggle="tab" href="#tab4">View Agents</a></li>
+                <li><a data-toggle="tab" href="#tab4">View Test Results</a></li>
+               
             </ul>
         </div>
         <div class="tab-content">
             <div id="tab1" class="tab-pane fade in active">@Html.Action("ViewAppointments")</div>
             <div id="tab2" class="tab-pane fade in">@Html.Action("GetServiceList")</div>
             <div id="tab3" class="tab-pane fade in">@Html.Action("GetDoctorsList")</div>
-            <div id="tab4" class="tab-pane fade in">@Html.Action("GetAgentList")</div>
+            <div id="tab4" class="tab-pane fade in">@Html.Action("ViewTestResults")</div>
         </div>
     </div>
 @Scripts.Render("~/bundles/jquery")

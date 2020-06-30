@@ -26,8 +26,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
                     <li><a href="#">Hi @ViewBag.Username</a></li>
+                    <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
                 </ul>
             </div>
         </div>
@@ -43,25 +43,17 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#tab1">View Appointments</a></li>
                 <li><a data-toggle="tab" href="#tab2">Medicare Services</a></li>
+                <li><a data-toggle="tab" href="#tab3">View Results</a></li>
             </ul>
         </div>
         <div class="tab-content">
             <div id="tab1" class="tab-pane fade in active">@Html.Action("ShowAllAppointments")</div>
             <div id="tab2" class="tab-pane fade in">@Html.Action("ShowMedicareServices")</div>
+            <div id="tab3" class="tab-pane fade in">@Html.Action("ViewAllPatients")</div>
         </div>
     </div>
-    <div class="container body-content">
-
-
-    </div>
-
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-
-    <script>
-       
-    </script>
 
 </body>
 </html>

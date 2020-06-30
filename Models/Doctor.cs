@@ -47,5 +47,6 @@ namespace Diagnostic_Medical_Center.Models
         public int RoleId { get; set; }
         public UserRole UserRole { get; set; }    
         public ICollection<Patient> Patients { get; set; }
+        public ICollection<MedicareService> MedicareServices { get; set; }
     }
 }

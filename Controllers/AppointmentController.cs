@@ -15,7 +15,7 @@ namespace Diagnostic_Medical_Center.Controllers
         // GET: Appointment
         public ActionResult BookAppointment()
         {
-            //OldMethod
+           
             var allServices = _context.MedicareServices.Select(s => new { s.ServiceID, s.ServiceName}).ToList();
             var allDoctors = _context.Doctors.Select(d => new { d.DoctorId, d.FirstName, d.LastName}).ToList();
             ViewBag.Services = allServices;
@@ -23,6 +23,9 @@ namespace Diagnostic_Medical_Center.Controllers
             
             return View();
         }
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -42,51 +45,16 @@ namespace Diagnostic_Medical_Center.Controllers
                 _context.Appointments.Add(newAppointment);
                 _context.SaveChanges();
                 ModelState.Clear();
+                ViewBag.SuccessMessage = "Your Appoinment has been Successfully Booked!";
+                return View();
             }
             else
             {
-                ModelState.AddModelError(string.Empty,"Something went wrong");
+                ModelState.AddModelError(string.Empty,"Something went wrong, Please try again.");
             }
 
             return RedirectToAction("BookAppointment");
         }
-
-        //[HttpGet]
-        public ActionResult PopulateDropDown(int id)
-        {
-
-            return View();
-        }
-
-        public ActionResult FillDoctors(int id)
-        {
-            var doctorId = _context.MedicareServices.Where(m => m.ServiceID == id).Select(d => d.DoctorId).FirstOrDefault();
-            var doctor = _context.Doctors.Where(d => d.DoctorId == doctorId).Select(x => new { x.DoctorId, x.FirstName, x.LastName }).FirstOrDefault();
-
-            if (doctor != null)
-            {
-                return Json(doctor, JsonRequestBehavior.AllowGet);
-            }
-            else
-                return Json(new { data = "No Doctors Available" }, JsonRequestBehavior.AllowGet);
-
-        }
-
-        [HttpGet]
-        public JsonResult GetDoctorsDropDown(int? id)
-        {
-            var doctorId = _context.MedicareServices.Where(m => m.ServiceID == id).Select(d => d.DoctorId).FirstOrDefault();
-            var doctor = _context.Doctors.Where(d => d.DoctorId == doctorId).Select(x => new { x.DoctorId, x.FirstName, x.LastName }).FirstOrDefault();
-
-            if (doctor != null)
-            {
-                return Json(doctor, JsonRequestBehavior.AllowGet);
-            }
-            else
-                return Json(new { data = "No Doctors Available" }, JsonRequestBehavior.AllowGet);
-           
-        }
-
 
     }
 }

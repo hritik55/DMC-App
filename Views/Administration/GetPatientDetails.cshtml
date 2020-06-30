@@ -1,76 +1,103 @@
-﻿@using System.Web.UI.WebControls
-@model IEnumerable<Diagnostic_Medical_Center.Models.Patient>
-
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.Patient>
+@{ 
+    Layout = null;
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>GetAgentDetails</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>GetPatientDetails</title>
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+    <style>
+        body{
+            background-color:#ffffff;
+        }
+        .info-panel
+        {
+            display: flex;
+            align-items: stretch;
+            
+            padding: 5px 10px;
+            margin: 5px;
+        }
+
+        .panel-default{
+            margin: 5px;
+            padding:10px;
+            box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.5);
+        }
+
+        .panel:hover {
+            box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+        }
+
+        .user-id{
+            flex-grow: 1;
+        }
+
+        .user-id h4{
+            margin:0;
+            font-weight:700;
+            font-family:"Source Sans Pro", sans-serif;
+            line-height: 5px;
+            color:#393939
+        }
+
+        .name, .phone {
+            font-weight: 700;
+            font-family: "Source Sans Pro", sans-serif;
+            font-size: 20px;
+            color: #393939;
+            flex-grow: 2;
+        }
+
+        .gender{
+            display: flex;
+            align-items:center;
+        }
+        .gender-span {
+            font-size: 20px;
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: 700;
+        }
+
+        .separator{
+            font-size: 30px;
+            font-family: "Source Sans Pro", sans-serif;
+            font-weight: 300;
+        }
+
+        sup {
+            font-weight: 600;
+            font-family: "Source Sans Pro", sans-serif;
+            color:#858585
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Diagnostic Medical Center", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "LoginManager")</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>Dear - @User.Identity.Name</li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
     <div>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Patient Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                    <th>Contact Number</th>
-                    <th>Status</th>
-                </tr>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.UserId</td>
-                        <td>@item.FirstName</td>
-                        <td>@item.LastName</td>
-                        <td>@item.Age</td>
-                        <td>@item.Sex</td>
-                        <td>@item.PhoneNo</td>
-                        @if (!item.RegistrationStatus)
-                        {
-                            <td style="color:red">Rejected</td>
-                        }
-                        else if (item.RegistrationStatus)
-                        {
-                            <td style="color:green">Accepted</td>
-                        }
-                        <td>@Html.ActionLink("Accept", "AcceptPatient", "Administration", new { @id = item.UserId}, null)</td>
-                        <td>
-                            @Html.ActionLink("Reject", "RejectPatient", "Administration", new { @id = item.UserId }, null)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div><button class="btn .btn-primary" onclick="location.href='@Url.Action("Index","Administration")'">Back</button></div>
+        
+        @foreach (var item in Model)
+        {
+
+            <div class="panel panel-default">
+                <div class="panel-body info-panel">
+                    <div class="user-id"><sup>Patient ID</sup><h4>@item.UserId</h4></div>
+                    <div class="name"><span>@item.FirstName  @item.LastName</span></div>
+                    <div class="gender"><span>@item.Age</span> <span class="separator">|</span> <span>@item.Sex</span></div>
+                    <div class="phone"><span class="glyphicon glyphicon-phone"></span>@item.PhoneNo</div>
+                    @if (!item.RegistrationStatus)
+                    {
+                        <div><button onclick="location.href='@Url.Action("AcceptPatient", "Administration", new { @id = item.UserId})'">Accept</button></div>
+                        <div><button onclick="location.href='@Url.Action("RejectPatient", "Administration", new { @id = item.UserId})'">Reject</button></div>
+                    }
+
+                </div>
+            </div>
+                  
+         }
+           
     </div>
 </body>
 </html>

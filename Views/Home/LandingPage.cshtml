@@ -8,7 +8,9 @@
     <title>Diagnostic Medical Centre</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/LandingPage.css" rel="stylesheet" type="text/css"/>
+    @*<link href="~/Content/LandingPage.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/NewStyle.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/3a5999d18b.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="content">
@@ -35,37 +37,27 @@
             </div>
         </div>
     </div>
-
-<div class="split left">
-    <div class="centered">
-        <div style="background-color: lightblue; padding: 10px; margin: 10px;">
-            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300;">New Patient Registration</p>
-            <button class="btn btn-primary" onclick="location.href = '@Url.Action("PatientRegister", "Registration")'">Register</button>
-        </div >
-        <div style="background-color: lightblue; padding: 10px; margin: 10px;">
-            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300;">New Doctor Registration</p>
-            <button class="btn btn-primary" onclick="location.href = '@Url.Action("DoctorRegister", "Registration")'">Register</button>
-        </div >
-        <div style="background-color: lightblue; padding: 10px; margin: 10px;">
-            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300">New Agent Registration</p>
-            <button class="btn btn-primary" onclick="location.href = '@Url.Action("AgentRegister", "Registration")'">Register</button>
-        </div >
-        <div  style="background-color: lightblue; padding: 10px; margin: 10px;">
-            <p style="font-size: 1.5em; font-family: 'Muli', sans-serif; font-weight: 300">New Admin Registration</p>
-            <button class="btn btn-primary" onclick="location.href = '@Url.Action("AdminRegister", "Registration")'">Register</button>
-        </div >
-    </div>
-    </div>
+    <main class="container-custom">
+        <section class="left">
+            <h3>Register</h3>
+            <article class="user-grid centered">
+                <a href="@Url.Action("AdminRegister", "Registration")"><div class="role"><i class="fas fa-user-cog fa-5x"></i>Admin</div></a>
+                <a href="@Url.Action("PatientRegister", "Registration")"><div class="role"><i class="fas fa-user-injured fa-5x"></i></br>Patient</div></a>
+                <a href="@Url.Action("DoctorRegister", "Registration")"><div class="role"><i class="fas fa-user-md fa-5x"></i></br>Doctor</div></a>
+                <a href="@Url.Action("AgentRegister", "Registration")"><div class="role"><i class="fas fa-user-tie fa-5x"></i></br>Agent</div></a>
+            </article>
+        </section>
+    </main>
 
     <div class="split right">
         <div class="centered">
-                  
+
             <h2>Already a Member?</h2>
             <button class="btn btn-lg btn-primary" onclick="location.href='@Url.Action("Signin","LoginManager")'">Log in</button>
-           
+
         </div>
     </div>
-       
+
 </body>
 
 </html>

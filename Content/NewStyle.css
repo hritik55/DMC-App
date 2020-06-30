@@ -1,0 +1,107 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap');
+
+html{
+    height:100%;
+    
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-image: linear-gradient(225deg,#0280b7, #93D8EA);
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.left {
+    left: 0;
+    
+}
+
+.right {
+    right: 0;
+    
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 50%;
+}
+
+section h3{
+    position: absolute;
+    left: 24%;
+    top: 20%;
+    color:antiquewhite;
+    font-weight:300;
+}
+
+
+article i{
+    padding: 20px;
+    color: #10aed9;
+    justify-self:center;
+}
+
+article .role {
+    background-color: azure;
+    box-shadow:5px 5px 10px rgba(1, 47, 62, 0.60);
+    border-radius: 20px;
+}
+
+nav{
+    display: flex;
+    justify-content:space-between;
+}
+
+nav a{
+    
+    color: azure;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 20px 80px;
+}
+
+nav ul li{
+    list-style: none;
+    display: inline;
+}
+
+.user-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    grid-template-rows: repeat(2, 150px);
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+}
+
+.container-body{
+    padding: 0;
+}
+
+.logo{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;   
+    line-height: 23px;
+    font-size: 25px;
+    color:aliceblue;
+    padding: 10px 0 0 80px;
+}

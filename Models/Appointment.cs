@@ -23,5 +23,6 @@ namespace Diagnostic_Medical_Center.Models
         public DateTime AppointmentDay { get; set; }
         public bool Approved { get; set; }
         public bool Completed { get; set; }
+
     }
 }

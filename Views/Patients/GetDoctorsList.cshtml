@@ -19,10 +19,10 @@
             font-family: 'Muli', sans-serif
         }
 
-            .grid > div {
-                background: grey;
-                padding: 1rem;
-            }
+        .grid > div {
+            background: grey;
+            padding: 1rem;
+        }
 
         .content {
             font-weight: 200;
@@ -39,22 +39,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="grid">
-        @foreach (var item in Model)
-        {
+ 
 
-            <div style="color: white">
-                <i class="fas fa-user-md fa-5x"></i>
-                <div class="content">
-                    Dr. @Html.DisplayFor(model => item.FirstName) @Html.DisplayFor(model => item.LastName)
-                    @Html.DisplayFor(model => item.DoctorId)
-                    @*<button onclick="@Html.ActionLink("Get Details", "GetDoctorDetails", new { id = item.DoctorId })"></button>*@
-                    <button class="btn btn-success" onclick="location.href='@Url.Action("GetDoctorDetails","Patients", new { @id = item.DoctorId })'">Get Details</button>
+        <div class="panel-group" id="accordion">
+            @foreach (var item in Model)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <i class="fas fa-user-md fa-3x"></i>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#@item.DoctorId">@item.DoctorId</a>
+                        </h4>
+                    </div>
+                    <div id="@item.DoctorId" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @Html.Action("GetDoctorDetails", "Patients", new { @id = item.DoctorId })
+                        </div>
+                    </div>
                 </div>
+            }
+        </div>
 
-            </div>
-
+        @section scripts
+        {
+            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+            <script src="~/Scripts/bootstrap.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
         }
-    </div>
-    </body>
+</body>
 </html>

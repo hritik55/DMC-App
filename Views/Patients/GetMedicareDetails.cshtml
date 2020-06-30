@@ -1,20 +1,10 @@
 ﻿@model Diagnostic_Medical_Center.Models.MedicareService
 
 @{
-    
+    Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetMedicareDetails</title>
-</head>
-<body>
     <div>
-        <h4>MedicareService</h4>
-        <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.DoctorId)
@@ -42,8 +32,4 @@
     
         </dl>
     </div>
-    <p>
-        <button class="btn btn-primary" onclick="location.href = '@Url.Action("PatientsIndex", "Patients")'">Back</button>
-    </p>
-</body>
-</html>
+

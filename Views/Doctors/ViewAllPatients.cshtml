@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Diagnostic_Medical_Center.Models.Appointment>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewAllPatients</title>
+</head>
+<body>
+   
+   
+           
+        @foreach (var item in Model)
+        {
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>
+                <a data-toggle="collapse" href="#@item.PatientId">@item.PatientId</a>
+            </h4>
+        </div>
+        <div id="@item.PatientId" class="panel-collapse collapse">
+            <div class="panel-body">
+                @Html.Action("GetPatientDetails", "Doctors", new { @id = item.PatientId })
+                @Html.Action("GetAllTests", "Doctors", new { @id = item.PatientId })
+            </div>
+        </div>
+    </div>
+        }
+            
+           
+</body>
+</html>

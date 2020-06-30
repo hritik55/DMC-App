@@ -82,39 +82,89 @@ namespace Diagnostic_Medical_Center.Controllers
             return View(service);
         }
 
-        public ActionResult ViewAppointments()
+
+        public ActionResult BookAppointment()
+        {
+
+            var currentUser = Session["User"] as Patient;
+            ViewBag.Username = currentUser.FirstName;
+            var allServices = _context.MedicareServices.Select(s => new { s.ServiceID, s.ServiceName }).ToList();
+            var allDoctors = _context.Doctors.Select(d => new { d.DoctorId, d.FirstName, d.LastName }).ToList();
+            ViewBag.Services = allServices;
+            ViewBag.Doctors = allDoctors;
+
+            return View();
+        }
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookAppointment(Appointment appointment)
+        {
+            var tempUser = (Patient)Session["User"];
+            ViewBag.Username = tempUser.FirstName;
+
+            if (ModelState.IsValid)
+            {
+                var newAppointment = new Appointment();
+                newAppointment.MedicareID = appointment.MedicareID;
+                newAppointment.DoctorId = appointment.DoctorId;
+                newAppointment.PatientId = tempUser.UserId;
+                newAppointment.AppointmentDay = appointment.AppointmentDay.Date;
+                newAppointment.Approved = false;
+                newAppointment.Completed = false;
+                _context.Appointments.Add(newAppointment);
+                _context.SaveChanges();
+                ModelState.Clear();
+                ViewBag.SuccessMessage = "Your Appointment has been Successfully Booked!";
+                
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong, Please try again.");
+            }
+
+            return RedirectToAction("BookAppointment");
+        }
+
+
+    public ActionResult ViewAppointments()
         {
             var user = (Patient)Session["User"];
             var appointments = _context.Appointments.Where(a => a.PatientId == user.UserId).ToList();
             foreach(var a in appointments)
             {
-                if (a.Approved == true && a.Completed == false)
+                if (a.Approved == false && a.Completed == false)
                 {
-                    ViewBag.Status = "Your Appointment has been Approved";
-                    break;
+                    ViewBag.Pending = "Your Appointment is pending for approval";
+                    
+                }else if(a.Approved == true && a.Completed == false)
+                {
+                    ViewBag.Approved = "Your appointment has been Approved.";
+                    
+                }else if(a.Approved == false && a.Completed == true)
+                {
+                    ViewBag.Rejected = "Your Appoinment has been Rejected";
+                    
+                }else if(a.Approved == true && a.Completed == true)
+                {
+                    ViewBag.Done = "Check your results";
                 }
-                //else if (a.Approved == false && a.Completed == true)
-                //{
-                //    ViewBag.Status = "Your Appointment has been Rejected";
-                //    break;
-                //}
-                //else if (a.Approved == true && a.Completed == true)
-                //{
-                //    ViewBag.Status = "Contact your Doctor or Agent for Test Results.";
-                //    break;
-                //}
-                //else if (a.Approved == false && a.Completed == false)
-                //{
-                //    ViewBag.Status = "Pending for Approval";
-                //    break;
-                //}
-                //else
-                //    ViewBag.Status = null;
             }
             return View(appointments);
         }
 
+        public ActionResult ViewTestResults()
 
+        {
+            var tempUser = (Patient)Session["User"];
+            ViewBag.Username = tempUser.FirstName;
+            var testList = _context.TestRequests.Where(r => r.PatientId == tempUser.UserId).ToList();
+            return View(testList);
+        }
+        
 
     }
 }
